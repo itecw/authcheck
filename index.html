@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>Secured Authentication</title>
+		
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    </head>
+ 
+	<body>
+		<div style="background-color:#F3F2F2;padding:30px 25px;margin:-10px;">
+			<h1 style="text-align:left;color:#2c3e50;">Secured<br>Authentication</h1>
+			<span>This is a simple demostration</span>
+		</div>
+
+		<div style="padding-left:15px;">
+			<h1 style="text-align:left;color:#2c3e50;">Product ID:<br><em id="prodID">Unknown</em></h1>
+		</div>
+		
+		<hr>
+
+		<!-- Display authentication successful -->
+		<div id="authSuccess" style="display:none">
+			<div style="text-align:center;padding-top:10px;">
+				<i class="fas fa-check-circle" style="font-size:80px;color:green;"></i>
+			</div>
+			<div style="padding-left:0px;text-align:center;color:green;">
+				<h1>The product code is <em>authenticated</em></h1>
+			</div>
+		</div>
+		
+		<!-- Display authentication failed -->
+		<div id="authFailed" style="display:none">
+			<div style="text-align:center;padding-top:10px;">
+				<i class="fas fa-times" style="font-size:80px;color:red;"></i>
+			</div>
+			<div style="padding-left:0px;text-align:center;color:red;">
+				<h1>Unable to verify product code</h1>
+				<span>Please contact <em>authcheck@tdccw.com</em></span>
+			</div>
+		</div>
+
+		<footer style="position:fixed;bottom:0;width:100%;text-align:center;background-color:#F3F2F2;font:normal 20px;margin:0px 0px 0px -10px;">
+			<span>© TDCCW</span>
+		</footer>
+		
+		<script>
+			var urlParams = new URLSearchParams(window.location.search);
+			var prodID = urlParams.get('id');
+			var authCheck = (urlParams.get('auth') == 'true');
+			console.log("id: ", prodID);
+			console.log("auth: ", authCheck);
+
+			prodID !== null ? document.getElementById("prodID").innerHTML = prodID : document.getElementById("prodID").innerHTML = "Unknown";
+			authCheck ? document.getElementById("authSuccess").style.display = 'block' : document.getElementById("authFailed").style.display = 'block';
+		</script>
+	</body>
+</html>
